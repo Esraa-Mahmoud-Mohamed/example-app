@@ -1,58 +1,215 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Furni – Furniture E-commerce Platform
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Furni is a furniture e-commerce web application that allows customers to browse furniture products, manage their shopping carts, apply discount coupons, and complete the checkout process, while providing an admin dashboard for managing the store's content and resources.
 
-## About Laravel
+## Features
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+### Customer Storefront
+- Browse furniture products and explore the shop.
+- View product details and related information.
+- Add products to the shopping cart and update quantities dynamically.
+- Validate product quantities against available stock.
+- Apply and remove discount coupons.
+- Calculate cart subtotal, discounts, and final total.
+- Complete checkout with billing, shipping, and order notes.
+- Manage customer profiles and view order-related information.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+### Admin Dashboard
+- Manage products, categories, and services.
+- Create, update, view, and delete blog posts.
+- Manage users, roles, and permissions.
+- Manage team members and testimonials.
+- View and update company settings, including logos, favicons, and social media links.
+- Control access to administrative features using authorization policies and permissions.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+### RESTful API
+- Authentication using Laravel Sanctum.
+- API endpoints for users, posts, products, roles, services, testimonials, and team members.
+- Request validation using Laravel Form Requests.
+- Consistent JSON responses using API Resources.
+- Image upload and management.
+- Role and permission management using Spatie Laravel Permission.
 
-## Learning Laravel
+## Tech Stack
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+| Layer | Technology |
+|---|---|
+| Backend | PHP, Laravel |
+| Frontend | Blade, JavaScript, Alpine.js |
+| Styling | Bootstrap, custom CSS |
+| Build Tool | Vite |
+| Database | MySQL |
+| Authentication | Laravel Authentication, Laravel Sanctum |
+| Authorization | Laravel Gates, Spatie Laravel Permission |
+| API | RESTful API, JSON, Laravel API Resources |
+| File Storage | Laravel Filesystem |
+| Notifications | SweetAlert2 / application notifications |
 
-In addition, [Laracasts](https://laracasts.com) contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## Requirements
 
-You can also watch bite-sized lessons with real-world projects on [Laravel Learn](https://laravel.com/learn), where you will be guided through building a Laravel application from scratch while learning PHP fundamentals.
+- PHP version compatible with your Laravel project.
+- Composer
+- Node.js and npm
+- MySQL
+- Git
 
-## Agentic Development
+## Getting Started
 
-Laravel's predictable structure and conventions make it ideal for AI coding agents like Claude Code, Cursor, and GitHub Copilot. Install [Laravel Boost](https://laravel.com/docs/ai) to supercharge your AI workflow:
+### 1. Clone the Repository
 
 ```bash
-composer require laravel/boost --dev
-
-php artisan boost:install
+git clone https://github.com/Esraa-Mahmoud-Mohamed/furni.git
+cd furni
 ```
 
-Boost provides your agent 15+ tools and skills that help agents build Laravel applications while following best practices.
+> Replace the repository URL and directory name if your GitHub repository uses a different name.
 
-## Contributing
+### 2. Install Dependencies
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+```bash
+composer install
+npm install
+```
 
-## Code of Conduct
+### 3. Configure the Environment
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+Create your environment file:
 
-## Security Vulnerabilities
+```bash
+cp .env.example .env
+php artisan key:generate
+```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+Configure your database in `.env`:
+
+```env
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=furni
+DB_USERNAME=root
+DB_PASSWORD=
+```
+
+Update the database name, username, and password to match your local environment.
+
+### 4. Run Database Migrations
+
+```bash
+php artisan migrate
+```
+
+To populate the database with sample data, if seeders are configured:
+
+```bash
+php artisan db:seed
+```
+
+### 5. Configure File Storage
+
+Create the public storage symbolic link:
+
+```bash
+php artisan storage:link
+```
+
+### 6. Start the Application
+
+Run the Laravel development server:
+
+```bash
+php artisan serve
+```
+
+In another terminal, start Vite:
+
+```bash
+npm run dev
+```
+
+The application will be available at:
+
+```text
+http://localhost:8000
+```
+
+## API Overview
+
+The API uses the `/api/v1` prefix.
+
+| Method | Endpoint | Description |
+|---|---|---|
+| POST | `/api/v1/register` | Register a user |
+| POST | `/api/v1/login` | Authenticate a user |
+| POST | `/api/v1/logout` | Log out an authenticated user |
+| GET | `/api/v1/posts` | Retrieve posts |
+| GET | `/api/v1/products` | Retrieve products |
+| GET | `/api/v1/services` | Retrieve services |
+| GET | `/api/v1/team-members` | Retrieve team members |
+| GET | `/api/v1/testimonials` | Retrieve testimonials |
+| GET | `/api/v1/users` | Retrieve users |
+| GET | `/api/v1/roles` | Retrieve roles |
+
+The resource endpoints are protected by Sanctum authentication in the current route configuration. Send a valid bearer token when accessing protected endpoints.
+
+For example:
+
+```http
+Authorization: Bearer YOUR_ACCESS_TOKEN
+Accept: application/json
+```
+
+The API also supports resource-specific operations such as creating, updating, and deleting records according to the configured routes and authorization rules.
+
+## Project Structure
+
+```text
+app/
+├── Http/
+│   ├── Controllers/
+│   │   ├── Api/
+│   │   └── EndUser/
+│   ├── Requests/
+│   └── Resources/
+├── Models/
+├── Policies/
+├── Services/
+└── Traits/
+
+database/
+├── factories/
+├── migrations/
+└── seeders/
+
+resources/
+├── views/
+├── css/
+└── js/
+
+routes/
+├── web.php
+├── api.php
+└── auth.php
+
+tests/
+```
+
+## Development
+
+Run the automated test suite:
+
+```bash
+php artisan test
+```
+
+Build frontend assets for production:
+
+```bash
+npm run build
+```
+
+Before deploying, configure production environment variables, use secure credentials, and review Laravel's production deployment recommendations.
 
 ## License
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Add the applicable license for this project. If you choose the MIT License, include the corresponding `LICENSE` file in the repository.
