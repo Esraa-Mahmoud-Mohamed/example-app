@@ -62,8 +62,6 @@ git clone https://github.com/Esraa-Mahmoud-Mohamed/furni.git
 cd furni
 ```
 
-> Replace the repository URL and directory name if your GitHub repository uses a different name.
-
 ### 2. Install Dependencies
 
 ```bash
