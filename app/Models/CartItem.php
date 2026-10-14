@@ -1,0 +1,26 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Attributes\Fillable;
+use Illuminate\Database\Eloquent\Concerns\HasUuids;
+use Illuminate\Database\Eloquent\Model;
+#[Fillable('id', 'cart_id', 'product_id', 'quantity', 'price')]
+class CartItem extends Model
+{
+    use HasUuids;
+
+    public function uniqueIds(): array
+    {
+        return ['id'];
+    }
+
+    public function cart()
+    {
+        return $this->belongsTo(Cart::class);
+    }
+    public function product()
+    {
+        return $this->belongsTo(Product::class);
+    }
+}
